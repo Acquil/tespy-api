@@ -5,7 +5,7 @@ from bson.json_util import dumps
 import flask
 
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 log = app.logger
 
 client = pymongo.MongoClient("mongodb+srv://user01:bl4ck4dd3r@cluster0-kooqx.mongodb.net/test?retryWrites=true&w=majority")
