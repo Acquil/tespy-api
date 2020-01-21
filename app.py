@@ -4,8 +4,9 @@ from flask import jsonify
 from bson.json_util import dumps
 import flask
 
-app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+
+app = Flask(__name__)
+log = app.logger
 
 client = pymongo.MongoClient("mongodb+srv://user01:bl4ck4dd3r@cluster0-kooqx.mongodb.net/test?retryWrites=true&w=majority")
 db = client.sample_airbnb
@@ -24,8 +25,6 @@ def api_all():
     return jsonify(dumps(result))
 
 
-app = Flask(__name__)
-log = app.logger
 
 
 
