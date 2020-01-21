@@ -22,11 +22,8 @@ def home():
 def api_all():
     name = request.args.get('name')
     result = collection.find({"name":name})
-    return jsonify(dumps(result))
+    return "Hello"
+#     return jsonify(dumps(result))
 
 
-
-
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+app.run()
