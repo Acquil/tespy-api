@@ -6,7 +6,8 @@ from bson.json_util import dumps
 import flask
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+#app.config["DEBUG"] = True
+log = app.logger
 
 client = pymongo.MongoClient("mongodb+srv://user01:bl4ck4dd3r@cluster0-kooqx.mongodb.net/test?retryWrites=true&w=majority")
 db = client.sample_training
@@ -31,4 +32,4 @@ def api_all():
     return jsonify(op)
 
 
-app.run(port=9000)
+app.run()
