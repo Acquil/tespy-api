@@ -1,16 +1,17 @@
+
 import pymongo
 from flask import request
 from flask import jsonify
-#from bson.json_util import dumps
+from bson.json_util import dumps
 import flask
 
-
 app = flask.Flask(__name__)
-log = app.logger
+app.config["DEBUG"] = True
 
 client = pymongo.MongoClient("mongodb+srv://user01:bl4ck4dd3r@cluster0-kooqx.mongodb.net/test?retryWrites=true&w=majority")
-db = client.sample_airbnb
-collection = db.listingsAndReviews
+db = client.sample_training
+collection = db.zips
+
 
 @app.route('/', methods=['GET'])
 def home():
@@ -18,12 +19,16 @@ def home():
 
 
 # A route to return all of the available entries in our catalog.
-@app.route('/api/v1/name/', methods=['GET'])
+@app.route('/api/city/', methods=['GET'])
 def api_all():
     name = request.args.get('name')
-    result = collection.find({"name":name})
-    return "Hello"
-#     return jsonify(dumps(result))
+    result = collection.find({"city":name})
+    op = []
+    for obj in result:
+        obj.pop('_id', None)
+        op.append(obj)    
+    
+    return jsonify(op)
 
 
-app.run()
+app.run(port=9000)
