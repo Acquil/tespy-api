@@ -31,7 +31,7 @@ def get_city():
     
     return jsonify(op)
 
-@app.route('/api/post/insert/', methods=['POST'])
+@app.route('/api/put/insert/', methods=['PUT'])
 def insert_city_with_check():
     city = request.args.get('city')
     loc_x = request.args.get('loc_x')
@@ -56,7 +56,7 @@ def insert_city_with_check():
     else:
         return "<h1> Please give all keys "
 
-@app.route('/api/put/insert/', methods=['PUT'])
+@app.route('/api/post/insert/', methods=['POST'])
 def insert_city_without_check():
     city = request.args.get('city')
     loc_x = request.args.get('loc_x')
